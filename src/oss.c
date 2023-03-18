@@ -17,6 +17,8 @@
 #include <sys/msg.h>
 #include <errno.h>
 #include <string.h>
+#include <stdio.h>
+#include <unistd.h>
 
 PCB * processTable;
 long totalWorkerCount;
