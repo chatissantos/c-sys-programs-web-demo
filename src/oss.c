@@ -5,7 +5,7 @@
 #include <sys/signal.h>
 #include "type/clock.h"
 #include "../headers/printProcessTable.h"
-#include "../headers/parseArguments.h"
+//#include "../headers/parseArguments.h"
 #include "../headers/checkArguments.h"
 #include "../headers/forkAndExecWorker.h"
 #include "../headers/signal.h"
