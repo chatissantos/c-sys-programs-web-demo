@@ -61,7 +61,7 @@ int main() {
                 int pid = fork();
                 if (pid == 0) {
                     printf("Lunched a child process for OSS\n");
-                    char* argument_list[] = {"./ossDemo", NULL};
+                    char* argument_list[] = {"./oss", NULL};
                     int qid = msgget(SERVER_TO_OSS_MESSAGE_KEY, IPC_CREAT | 0666);
                     Message msg;
                     msg.mtype = 1;
