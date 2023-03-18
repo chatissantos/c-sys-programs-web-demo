@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
         bzero(buff,256);
         fgets(buff,255,stdin);
 
-        printf("\nSending to SERVER: %s ", buff);
+//        printf("\nSending to SERVER: %s ", buff);
 
         /* Send message to the server */
         in = send(fd,buff,strlen(buff),0);
@@ -75,7 +75,8 @@ int main(int argc, char *argv[]) {
         /* Now read server response */
         bzero(buff, 256);
         int n;
-        while ( (n = recv(in, buff, 256,0)) > 0) {
+        while ( (in = recv(fd, buff, 256,0)) > 0) {
+//        while ( (n = recv(in, buff, 256,0)) > 0) {
 //            in = recv(fd,buff,255,0);
             if (in < 0) {
                 perror("\nClient Error: Reading from Server");
