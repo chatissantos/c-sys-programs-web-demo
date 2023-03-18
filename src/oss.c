@@ -83,13 +83,14 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    int * in = (int * ) shmat(shmidServer, NULL, 0);
-    if (in == (void *) -1) {
+    Client * client = (Client * ) shmat(shmidServer, NULL, 0);
+    if (client == (void *) -1) {
         printf("shmat failed in worker\n");
         exit(1);
     }
 
-    send(*in, "SENT TO CLIENT FROM OSS", 256, 0);
+    printf("IN FROM OSS: $d", client->in);
+    send(client->in, "SENT TO CLIENT FROM OSS", 256, 0);
 
 
     srand(time(NULL));

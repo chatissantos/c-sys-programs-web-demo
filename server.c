@@ -78,19 +78,21 @@ int main() {
                     }
 
 
-                    int shm_id = shmget(getpid(), sizeof(in), IPC_CREAT | 0644);
+                    int shm_id = shmget(getpid(), sizeof(Client), IPC_CREAT | 0644);
 
                     if (shm_id == -1) {
                         printf("shmget failed in oss \n");
                         exit(1);
                     }
 
-                    int * inShm = (int *) shmat(shm_id, NULL, 0);
-                    if (inShm == (void *) -1) {
+
+                    Client * client = (Client *) shmat(shm_id, NULL, 0);
+                    if (client == (void *) -1) {
                         printf("shmat failed in oss\n");
                         exit(1);
                     }
-                    inShm = &in;
+                    client->in = in;
+                    printf("IN FROM SERVER: $d", in);
 
                     execv(argument_list[0],  argument_list);
                     printf("execv failed to execute correctly\n");
