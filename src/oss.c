@@ -77,15 +77,15 @@ int main(int argc, char *argv[]) {
 
     printf("Oss received message n: %ld, s: %ld, t: %ld\n", n, s, t);
 
-    int shmidServer = shmget(getpid(), sizeof(Clock), 0644);
+    int shmidServer = shmget(getpid(), sizeof(Client), 0644);
     if (shmidServer == -1) {
-        printf("shmget failed in worker\n");
+        printf("shmget failed in OSS 1\n");
         exit(1);
     }
 
     Client * client = (Client * ) shmat(shmidServer, NULL, 0);
     if (client == (void *) -1) {
-        printf("shmat failed in worker\n");
+        printf("shmat failed in OSS 1\n");
         exit(1);
     }
 
