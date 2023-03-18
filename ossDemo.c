@@ -31,7 +31,7 @@ int main() {
     while( token != NULL ) {
         printf("token: %s\n", token);
         arguments[i] = strtol(token, &p, 10);
-        token = strtok(NULL, " ");
+        token = strtok(NULL, ",");
         i++;
     }
     long n = arguments[0];
