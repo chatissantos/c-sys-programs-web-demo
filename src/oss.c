@@ -10,6 +10,8 @@
 #include "../headers/forkAndExecWorker.h"
 #include "../headers/signal.h"
 #include "../headers/logOss.h"
+#include <sys/types.h>
+#include <sys/wait.h>
 
 PCB * processTable;
 int totalWorkerCount;
