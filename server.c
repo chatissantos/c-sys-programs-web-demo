@@ -11,10 +11,11 @@
 #include <sys/msg.h>
 #include <sys/errno.h>
 #include "src/type/message.h"
+#include <sys/wait.h>
 
 int main() {
     int fd = 0;
-    char buff[1024];
+    char buff[80];
 
     //Setup Buffer Array
     memset(buff, '0',sizeof(buff));
@@ -51,7 +52,7 @@ int main() {
             close (fd);
 
             //Clear Zeroes
-            bzero(buff,256);
+            bzero(buff,80);
 
             while ( (n = recv(in, buff, 256,0)) > 0) {
 
@@ -84,7 +85,7 @@ int main() {
                 //Response to client
                 send(in, "<html><body>alibaba</body></html>", 256, 0);
 
-                bzero(buff,256);
+                bzero(buff,80);
 
             }
             close(in);
