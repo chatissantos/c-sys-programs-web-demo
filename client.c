@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
                 perror("\nClient Error: Reading from Server");
                 return 0;
             }
-            printf("\nReceived FROM SERVER: %s\n",buff);
+            printf("%s",buff);
         }
     }
     close(fd);
