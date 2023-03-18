@@ -5,8 +5,8 @@ SERVER_TARGET = server
 OSS_DEMO_TARGET = ossDemo
 CLIENT_TARGET = client
 
-all: $(SERVER_TARGET) $(OSS_DEMO_TARGET)
-#all: $(CLIENT_TARGET) $(OSS_TARGET) $(WORKER_TARGET) $(SERVER_TARGET) $(OSS_DEMO_TARGET)
+#all: $(SERVER_TARGET) $(OSS_DEMO_TARGET)
+all: $(OSS_TARGET) $(WORKER_TARGET) $(SERVER_TARGET) $(OSS_DEMO_TARGET) $(CLIENT_TARGET)
 
 $(OSS_TARGET): src/oss.c src/helpers/*.c
 	$(CC) -o $@ src/oss.c src/helpers/*.c -I.
