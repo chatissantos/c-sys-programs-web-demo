@@ -16,7 +16,7 @@ void logOss(char * string, ...) {
 
     va_start(args, string);
     FILE *fp;
-    fp = fopen(logFileName, "a");
+    fp = fopen("log", "a");
     vfprintf(fp, string, args);
     fclose(fp);
     va_end(args);

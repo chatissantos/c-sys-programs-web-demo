@@ -2,9 +2,7 @@
 #include <getopt.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <time.h>
 #include "../../headers/parseArguments.h"
-#include "../../headers/logOss.h"
 
 Arguments parseArguments(int argc, char *argv[]) {
     Arguments arguments;
@@ -12,8 +10,8 @@ Arguments parseArguments(int argc, char *argv[]) {
     arguments.totalWorkerCount = 0;
     arguments.maximumConcurrentProcesses = 0;
     arguments.maximumChildRunTimeInSeconds = 0;
-    logFileName = (char *)malloc(sizeof(char) * (20));
-    sprintf(logFileName, "%ld", time(NULL));
+//    logFileName = (char *)malloc(sizeof(char) * (20));
+//    sprintf(logFileName, "%ld", time(NULL));
     int index;
     int c;
 
@@ -33,9 +31,9 @@ Arguments parseArguments(int argc, char *argv[]) {
             case 'h':
                 arguments.helpFlag = 1;
                 break;
-            case 'f':
-                logFileName = optarg;
-                break;
+//            case 'f':
+//                logFileName = optarg;
+//                break;
             case '?':
                 if (optopt == 'n' || optopt == 's' || optopt == 't')
                     fprintf (stderr, "Option -%c requires an argument.\n", optopt);
