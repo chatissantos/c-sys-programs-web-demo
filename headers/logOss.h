@@ -6,6 +6,5 @@
 #define SANTOS_3_LOGOSS_H
 
 void logOss(char * string, ...);
-char * logFileName;
 
 #endif //SANTOS_3_LOGOSS_H
