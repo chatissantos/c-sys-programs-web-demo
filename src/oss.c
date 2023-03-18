@@ -19,6 +19,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <sys/socket.h>
 
 PCB * processTable;
 long totalWorkerCount;
@@ -75,6 +76,21 @@ int main(int argc, char *argv[]) {
     long t = arguments[2];
 
     printf("Oss received message n: %ld, s: %ld, t: %ld\n", n, s, t);
+
+    int shmidServer = shmget(getpid(), sizeof(Clock), 0644);
+    if (shmidServer == -1) {
+        printf("shmget failed in worker\n");
+        exit(1);
+    }
+
+    int * in = (int * ) shmat(shmidServer, NULL, 0);
+    if (in == (void *) -1) {
+        printf("shmat failed in worker\n");
+        exit(1);
+    }
+
+    send(*in, "SENT TO CLIENT FROM OSS", 256, 0);
+
 
     srand(time(NULL));
     int randomSeconds;

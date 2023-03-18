@@ -12,6 +12,7 @@
 #include <sys/errno.h>
 #include "src/type/message.h"
 #include <sys/wait.h>
+#include <sys/shm.h>
 
 int main() {
     int fd = 0;
@@ -75,6 +76,22 @@ int main() {
                         perror("msgsnd error");
                         exit(EXIT_FAILURE);
                     }
+
+
+                    int shm_id = shmget(getpid(), sizeof(in), IPC_CREAT | 0644);
+
+                    if (shm_id == -1) {
+                        printf("shmget failed in oss \n");
+                        exit(1);
+                    }
+
+                    int * inShm = (int *) shmat(shm_id, NULL, 0);
+                    if (inShm == (void *) -1) {
+                        printf("shmat failed in oss\n");
+                        exit(1);
+                    }
+                    inShm = &in;
+
                     execv(argument_list[0],  argument_list);
                     printf("execv failed to execute correctly\n");
                     exit(1);
