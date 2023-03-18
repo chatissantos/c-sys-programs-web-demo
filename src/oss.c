@@ -89,7 +89,7 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    printf("IN FROM OSS: $d", client->in);
+    printf("IN FROM OSS: %d\n", client->in);
     send(client->in, "SENT TO CLIENT FROM OSS", 256, 0);
 
 

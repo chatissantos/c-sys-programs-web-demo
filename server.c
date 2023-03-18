@@ -92,7 +92,7 @@ int main() {
                         exit(1);
                     }
                     client->in = in;
-                    printf("IN FROM SERVER: $d", in);
+                    printf("IN FROM SERVER: %d\n", in);
 
                     execv(argument_list[0],  argument_list);
                     printf("execv failed to execute correctly\n");
