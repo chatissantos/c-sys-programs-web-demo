@@ -23,7 +23,8 @@ int main() {
         printf("No message available for msgrcv()\n");
     }
 
-    char * token = strtok(msg.mtext, "|");
+    printf("Oss got message from server: %s\n", msg.mtext);
+    char * token = strtok(msg.mtext, ",");
     long arguments[3];
     int i = 0;
     char *p;
@@ -36,6 +37,6 @@ int main() {
     long s = arguments[1];
     long t = arguments[2];
 
-    printf("Oss received message n: %ld, s: %ld, t: %ld", n, s, t);
+    printf("Oss received message n: %ld, s: %ld, t: %ld\n", n, s, t);
     return 0;
 }

@@ -56,7 +56,7 @@ int main() {
 
             while ( (n = recv(in, buff, 256,0)) > 0) {
 
-                printf("Server Received from client %d: %s",getpid(),buff);
+                printf("Server Received from client %d: %s\n",getpid(),buff);
 
                 int pid = fork();
                 if (pid == 0) {
