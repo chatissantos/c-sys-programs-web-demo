@@ -5,6 +5,6 @@
 #ifndef SANTOS_3_LOGOSS_H
 #define SANTOS_3_LOGOSS_H
 
-void logOss(char * string, ...);
+void logOss(int in, char * string, ...);
 
 #endif //SANTOS_3_LOGOSS_H

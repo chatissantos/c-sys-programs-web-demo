@@ -6,26 +6,26 @@
 #include "../../headers/logOss.h"
 #include "../../headers/printProcessTable.h"
 
-void printSeparator() {
+void printSeparator(int in) {
     int i;
     for(i = 0; i < 79; i++) {
-        logOss("%s", "-");
+        logOss(in, "%s", "-");
     }
-    logOss("\n");
+    logOss(in, "\n");
 }
-void printHeader() {
-    printSeparator();
-    logOss("%5s | %15s | %15s | %15s | %15s |\n", "Entry", "Occupied", "PID", "StartS", "StartN");
-    printSeparator();
+void printHeader(int in) {
+    printSeparator(in);
+    logOss(in, "%5s | %15s | %15s | %15s | %15s |\n", "Entry", "Occupied", "PID", "StartS", "StartN");
+    printSeparator(in);
 }
-void printTitle() {
-    logOss("--- Process Table ---\n");
+void printTitle(int in) {
+    logOss(in, "--- Process Table ---\n");
 }
-void printProcessTable(PCB processTable[], int size) {
-    printTitle();
-    printHeader();
+void printProcessTable(PCB processTable[], int size, int in) {
+    printTitle(in);
+    printHeader(in);
     int i;
     for(i = 0; i < size; i++) {
-        logOss("%5d | %15d | %15d | %15d | %15d |\n", i, processTable[i].occupied, processTable[i].pid, processTable[i].startSec, processTable[i].startNano);
+        logOss(in, "%5d | %15d | %15d | %15d | %15d |\n", i, processTable[i].occupied, processTable[i].pid, processTable[i].startSec, processTable[i].startNano);
     }
 }

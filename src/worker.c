@@ -11,8 +11,8 @@
 //
 // Created by Chatis Santos on 2/16/23.
 //
-int main(int argc, char *argv[]) {
-    int qid = msgget(SERVER_TO_OSS_MESSAGE_KEY, 0644);
+int main() {
+    int qid = msgget(OSS_TO_WORKER_MESSAGE_KEY, 0644);
     Message msg;
     if (msgrcv(qid, (void *) &msg, sizeof(msg.mtext), 1,
                MSG_NOERROR | IPC_NOWAIT) == -1) {

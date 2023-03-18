@@ -5,10 +5,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <sys/socket.h>
 #include "../../headers/logOss.h"
 
-void logOss(char * string, ...) {
+void logOss(int in, char * string, ...) {
     va_list args;
+
+    char toClient[256];
+    va_start(args, string);
+    vsprintf(toClient, string, args);
+    va_end(args);
+    send(in, toClient, 256, 0);
 
     va_start(args, string);
     vprintf(string, args);

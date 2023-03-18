@@ -10,7 +10,7 @@ int forkAndExecWorker (int sec, int nano) {
     int pid = fork();
     if (pid == 0) {
         char* argument_list[] = {"./worker", NULL};
-        int qid = msgget(SERVER_TO_OSS_MESSAGE_KEY, IPC_CREAT | 0666);
+        int qid = msgget(OSS_TO_WORKER_MESSAGE_KEY, IPC_CREAT | 0666);
         Message msg;
         msg.mtype = 1;
         time_t t;

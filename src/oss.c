@@ -26,7 +26,7 @@ long totalWorkerCount;
 int shm_id;
 
 static void timeoutHandler(int s) {
-    logOss("Program timed out. Exiting.......\n");
+//    logOss("Program timed out. Exiting.......\n");
 
     int i;
     for(i = 0; i < totalWorkerCount; i++) {
@@ -101,11 +101,11 @@ int main(int argc, char *argv[]) {
     long maximumChildRunTimeInSeconds = t;
 
     if (setupinterrupt(timeoutHandler) == -1) {
-        logOss("Failed to set up handler for SIGPROF\n");
+        logOss(client->in, "Failed to set up handler for SIGPROF\n");
         exit(1);
     }
     if (setupitimer() == -1) {
-        logOss("Failed to set up the ITIMER_PROF interval timer\n");
+        logOss(client->in, "Failed to set up the ITIMER_PROF interval timer\n");
         exit(1);
     }
 
@@ -115,13 +115,13 @@ int main(int argc, char *argv[]) {
     shm_id = shmget(CLOCK_MEMORY_KEY, sizeof(Clock), IPC_CREAT | 0644);
 
     if (shm_id == -1) {
-        logOss("shmget failed in oss \n");
+        logOss(client->in, "shmget failed in oss \n");
         exit(1);
     }
 
     Clock * clock = (Clock *) shmat(shm_id, NULL, 0);
     if (clock == (void *) -1) {
-        logOss("shmat failed in oss\n");
+        logOss(client->in, "shmat failed in oss\n");
         exit(1);
     }
 
@@ -134,7 +134,7 @@ int main(int argc, char *argv[]) {
     int status;
     int pid = 0;
 
-    logOss("\n\n\t\t= OSS STARTED %ld =\n\n", time(NULL));
+    logOss(client->in, "\n\n\t\t= OSS STARTED %ld =\n\n", time(NULL));
 
     for(;;) {
         incrementClock(clock);
@@ -146,7 +146,7 @@ int main(int argc, char *argv[]) {
                     break;
                 }
             }
-            printProcessTable(processTable, totalWorkerCount);
+            printProcessTable(processTable, totalWorkerCount, client->in);
         }
         if (nextWorker < totalWorkerCount) {
             if (activeWorkerCount < maximumConcurrentProcesses) {
@@ -158,7 +158,7 @@ int main(int argc, char *argv[]) {
 
                 nextWorker += 1;
                 activeWorkerCount += 1;
-                printProcessTable(processTable, totalWorkerCount);
+                printProcessTable(processTable, totalWorkerCount, client->in);
             }
         }
         if ((pid = waitpid(-1, &status, WNOHANG)) == -1) {

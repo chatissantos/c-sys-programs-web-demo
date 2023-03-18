@@ -74,12 +74,14 @@ int main(int argc, char *argv[]) {
 
         /* Now read server response */
         bzero(buff, 256);
-        in = recv(fd,buff,255,0);
-        if (in < 0) {
-            perror("\nClient Error: Reading from Server");
-            return 0;
+        while ( (in = recv(in, buff, 256,0)) > 0) {
+//            in = recv(fd,buff,255,0);
+            if (in < 0) {
+                perror("\nClient Error: Reading from Server");
+                return 0;
+            }
+            printf("\nReceived FROM SERVER: %s\n",buff);
         }
-        printf("\nReceived FROM SERVER: %s\n",buff);
     }
     close(fd);
     return 0;

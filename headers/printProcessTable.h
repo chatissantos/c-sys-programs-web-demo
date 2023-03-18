@@ -7,5 +7,6 @@
 #ifndef SANTOS2_PRINTPROCESSTABLE_H
 #define SANTOS2_PRINTPROCESSTABLE_H
 
+void printProcessTable(PCB *processTable, int size, int in);
+
 #endif //SANTOS2_PRINTPROCESSTABLE_H
-void printProcessTable(PCB *processTable, int size);
