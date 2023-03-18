@@ -44,6 +44,9 @@ int main() {
 
     listen(fd, 10);
     while((in = accept(fd, (struct sockaddr*)NULL, NULL))) {
+        send(in, "101 Switching Protocols\n"
+                 "Upgrade: websocket\n"
+                 "Connection: Upgrade", 256, 0);
         int childpid,n;
         if ( (childpid = fork ()) == 0 ) {
 
