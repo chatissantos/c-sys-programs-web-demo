@@ -1,0 +1,16 @@
+Version Control is done with GIT
+
+
+## How Compile
+Run `make` command from the main folder. This command will create the executables oss and worker.
+
+## How to Run
+run `./oss oss [-h] [-n proc] [-s simul] [-t timelimit] [-f logfile]`
+
+Required arguments: [n, s, t]
+Optional arguments: [h, f]
+Defaults:
+- f: time(NULL)
+
+## Print help
+`./oss -h`
